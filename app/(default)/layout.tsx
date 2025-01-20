@@ -1,6 +1,6 @@
 import LandingLayout from "@/templates/tailspark/landing/layout";
 import { Metadata } from "next";
-import pagejson from "@/pagejson/en.json";
+import pagejson from "@/pagejson/cn.js";
 
 export const metadata: Metadata = {
   title: pagejson?.metadata?.title,
