@@ -9,12 +9,8 @@ export async function POST(req: Request) {
   try {
     let project: Project = await req.json();
 
-    const parsedProject = parseProject(project);
-    if (!parsedProject) {
-      return respErr("invalid project");
-    }
 
-    const savedProject = await saveProject(parsedProject);
+    const savedProject = await saveProject(project);
     if (!savedProject) {
       return respErr("save project failed");
     }
