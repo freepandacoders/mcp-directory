@@ -34,7 +34,7 @@ export default async function ({
 
     const project = await findProjectByName(name);
     if (!project || !project.uuid) {
-        return <div>Project not found</div>;
+        return <div>项目不存在</div>;
     }
 
     const category = await findCategoryByName(project.category || '');

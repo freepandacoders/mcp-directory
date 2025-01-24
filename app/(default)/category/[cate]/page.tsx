@@ -51,7 +51,7 @@ export default async function ({
 
     const category = await findCategoryByName(cate);
     if (!category) {
-        return <div>Category not found</div>;
+        return <div>分类不存在</div>;
     }
 
     const projects = await getProjectsByCategory(cate, 1, 300);
