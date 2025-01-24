@@ -33,7 +33,7 @@ export default ({
 
                         <div className='flex items-center gap-2 mt-4'>
                             <p className='text-md sm:text-md'>
-                                Created at{' '}
+                                收录于{' '}
                                 <span className='text-primary'>
                                     {moment(project.updated_at).fromNow()}
                                 </span>
@@ -88,7 +88,7 @@ export default ({
                                 target='_blank'
                                 className='flex items-center gap-2 rounded-md border border-solid bg-primary text-white px-6 py-3 truncate'
                             >
-                                <span>Visit {project.title} 👉</span>
+                                <span>访问 {project.title} 👉</span>
                             </a>
                         </div>
                     </div>
