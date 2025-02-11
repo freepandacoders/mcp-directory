@@ -67,7 +67,7 @@ export default ({
                                 标签
                             </p>
                             {tagsArr &&
-                                tagsArr.map((tag) => (
+                                tagsArr.map((tag: string) => (
                                     <p key={tag}>
                                         <input
                                             type='checkbox'
