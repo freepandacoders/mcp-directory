@@ -3,14 +3,12 @@ import {
   findProjectByName,
   insertProject,
   updateProject,
-
 } from "@/models/project";
 import {
 
   findCategoryByName,
   insertCategory,
   updateCategory,
-  getProjectsCountByCategory
 } from "@/models/category";
 
 import { ChatCompletionCreateParamsNonStreaming } from "openai/resources/index.mjs";
