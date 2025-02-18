@@ -3,10 +3,19 @@ import {
   findProjectByName,
   insertProject,
   updateProject,
+
 } from "@/models/project";
+import {
+
+  findCategoryByName,
+  insertCategory,
+  updateCategory,
+  getProjectsCountByCategory
+} from "@/models/category";
 
 import { ChatCompletionCreateParamsNonStreaming } from "openai/resources/index.mjs";
 import { Project } from "@/types/project";
+import { Category } from "@/types/category";
 import { extractProjectPrompt } from "@/services/prompts/extract_project";
 import { genUuid } from "@/utils";
 import { getIsoTimestr } from "@/utils/time";
@@ -175,6 +184,28 @@ export async function saveProject(
   try {
     if (!project.name) {
       throw new Error("invalid project");
+    }
+
+    // Handle category first if it exists
+    if (project.category) {
+      const existingCategory = await findCategoryByName(project.category);
+      
+      if (!existingCategory) {
+        // Create new category
+        const newCategory: Category = {
+          name: project.category,
+          title: project.category, // Using name as title for now
+          status: "created",
+          created_at: getIsoTimestr(),
+          projects_count: 1,
+        };
+        await insertCategory(newCategory);
+      } else {
+        // Update existing category's project count
+        await updateCategory(project.category, {
+          projects_count: (existingCategory.projects_count || 0) + 1,
+        });
+      }
     }
 
     const existProject = await findProjectByName(project.name);

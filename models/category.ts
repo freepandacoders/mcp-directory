@@ -46,3 +46,14 @@ export async function getCategories(
     projects_count: getProjectsCountByCategory(category.name),
   }));
 }
+
+export async function updateCategory(name: string, category: Partial<Category>) {
+  const supabase = getSupabaseClient();
+  const { data, error } = await supabase
+    .from("categories")
+    .update(category)
+    .eq("name", name);
+
+  if (error) throw error;
+  return data;
+}
