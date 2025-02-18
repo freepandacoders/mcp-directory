@@ -11,6 +11,7 @@ import {
   updateCategory,
 } from "@/models/category";
 
+
 import { ChatCompletionCreateParamsNonStreaming } from "openai/resources/index.mjs";
 import { Project } from "@/types/project";
 import { Category } from "@/types/category";
@@ -195,14 +196,8 @@ export async function saveProject(
           title: project.category, // Using name as title for now
           status: "created",
           created_at: getIsoTimestr(),
-          projects_count: 1,
         };
         await insertCategory(newCategory);
-      } else {
-        // Update existing category's project count
-        await updateCategory(project.category, {
-          projects_count: (existingCategory.projects_count || 0) + 1,
-        });
       }
     }
 
